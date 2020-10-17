@@ -1,0 +1,20 @@
+Home Page
+    write simple about me blurb
+
+Contact Page
+    Design Layout
+        Fields:
+            Name
+            Email
+            Message
+    Captcha on send button
+    Redirects to success.html
+
+Projects Page
+    Design Layout
+
+404 Page
+    Design layout
+
+Success Page
+    Design layout
