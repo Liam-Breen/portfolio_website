@@ -18,5 +18,9 @@ def render_projects():
 def contact():
     return render_template('contact.html')
 
+@app.route("/success")
+def success():
+    return render_template('success.html')
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1')
