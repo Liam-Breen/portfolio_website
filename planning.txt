@@ -10,11 +10,11 @@ Contact Page
     Captcha on send button
     Redirects to success.html
 
+Success Page
+    Design layout
+
 Projects Page
     Design Layout
 
 404 Page
-    Design layout
-
-Success Page
     Design layout
