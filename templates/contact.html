@@ -31,8 +31,8 @@
             <div class="column column-67">
                 <h2>Contact Form</h2>
                 <br>
-                <form >
-                    <fieldse>
+                <form action="{{ url_for('contact') }}" method="post">
+                    <fieldset>
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name">
                         <label for="email">Email address</label>

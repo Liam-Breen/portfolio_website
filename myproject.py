@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.errorhandler(404)
@@ -14,8 +14,11 @@ def render_home_page():
 def render_projects():
      return render_template('projects.html')
 
-@app.route("/contact")
+@app.route("/contact", methods=['GET', 'POST'])
 def contact():
+    data = request.form
+    if data:
+        return render_template('success.html')
     return render_template('contact.html')
 
 @app.route("/success")
