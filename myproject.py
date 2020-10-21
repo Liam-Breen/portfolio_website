@@ -2,13 +2,13 @@ from flask import Flask, render_template, request
 from flask_mail import Mail, Message
 
 app = Flask(__name__)
-mail= Mail(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = ''
 app.config['MAIL_PASSWORD'] = ''
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+mail= Mail(app)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -36,7 +36,7 @@ def send_email(data):
     print('>>>>>>>>>>>')
     print('>>>>>>>>>>>')
     print('>>>>>>>>>>>')
-    msg = Message('Hello', sender = 'yourId@gmail.com', recipients = ['someone1@gmail.com'])
+    msg = Message('Hello', sender = '', recipients = [''])
     msg.body = "Hello Flask message sent from Flask-Mail"
     mail.send(msg)
 
