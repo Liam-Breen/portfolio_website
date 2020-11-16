@@ -28,6 +28,24 @@
             <div class="column column-67">
                 <h2>Projects</h2>
 
+                <table>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Description</strong></td>
+                        <td><strong>Tags</strong></td>
+                    </tr>
+                    {% for repo in github_info %}
+                    <tr>
+
+                        <td><a href="{{ repo.repo_url }}"><u>{{ repo.title }}</u></a></td>
+                        <td>{{ repo.description }}</td>
+                        <td>{{ repo.tags }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+
+
             </div>
             <div class="column"></div>
         </div>

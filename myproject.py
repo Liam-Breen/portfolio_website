@@ -15,9 +15,7 @@ def render_home_page():
 @app.route("/projects")
 def render_projects():
     github_info = get_github_info()
-    for i in github_info:
-        print(i)
-    return render_template('projects.html')
+    return render_template('projects.html', github_info=github_info)
 
 @app.route("/contact")
 def contact():
@@ -39,27 +37,24 @@ def get_github_info():
     github_info = []
     for repo in repos:
 
-        repo_info = []
+        repo_info = {}
 
         repo_url = f"https://github.com/{github_username}/{repo.text.strip()}"
-        repo_info.append(repo_url)
+        repo_info['repo_url'] = repo_url
         repo_page = requests.get(url = repo_url)
         repo_page_soup = BeautifulSoup(repo_page.content, 'html.parser')
 
         title = repo_page_soup.find("meta", {"property":"og:title"})['content']
         title = title.split('/')[1]
-        repo_info.append(title)
+        repo_info['title'] = title
 
         desc_content = repo_page_soup.find("meta", {"name":"description"})['content']
         # This is needed add the end of your description to create the tags section
         desc_content_split = desc_content.split('END')
         description = desc_content_split[0]
-        repo_info.append(description)
-        try:
-            tags = desc_content_split[1]
-            repo_info.append(tags)
-        except IndexError:
-            pass
+        repo_info['description'] = description
+        tags = desc_content_split[1]
+        repo_info['tags'] = tags
 
         github_info.append(repo_info)
 
