@@ -32,13 +32,14 @@ def contact():
     return render_template('contact.html')
 
 def send_email(data):
-    # Wrap in a try/catch
-    print('>>>>>>>>>>>')
-    print('>>>>>>>>>>>')
-    print('>>>>>>>>>>>')
-    msg = Message('Hello', sender = '', recipients = [''])
-    msg.body = "Hello Flask message sent from Flask-Mail"
-    mail.send(msg)
+    print(data['name'])
+    try:
+        msg = Message(f'{data["subject"]}', sender = f'{data["email"]}', recipients = ['liam.breen25@gmail.com'])
+        msg.body = f"name: {data['name']}, email: {data['email']}, sender: {data['email']}, message: {data['message']},"
+        mail.send(msg)
+    except:
+        pass
+
 
 
 @app.route("/success")
