@@ -1,12 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_mail import Mail, Message
 import requests
 from bs4 import BeautifulSoup
+import credlib
+
+print(credlib.username)
+
 app = Flask(__name__)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = ''
-app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_USERNAME'] = credlib.username
+app.config['MAIL_PASSWORD'] = credlib.password
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail= Mail(app)
