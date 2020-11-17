@@ -1,7 +1,17 @@
 from flask import Flask, render_template
 import requests
 from bs4 import BeautifulSoup
+from flask import Flask, render_template, request
+from flask_mail import Mail, Message
+
 app = Flask(__name__)
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail= Mail(app)
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -17,9 +27,23 @@ def render_projects():
     github_info = get_github_info()
     return render_template('projects.html', github_info=github_info)
 
-@app.route("/contact")
+@app.route("/contact", methods=['GET', 'POST'])
 def contact():
+    data = request.form
+    if data:
+        send_email(data)
+        return render_template('success.html')
     return render_template('contact.html')
+
+def send_email(data):
+    # Wrap in a try/catch
+    print('>>>>>>>>>>>')
+    print('>>>>>>>>>>>')
+    print('>>>>>>>>>>>')
+    msg = Message('Hello', sender = '', recipients = [''])
+    msg.body = "Hello Flask message sent from Flask-Mail"
+    mail.send(msg)
+
 
 @app.route("/success")
 def success():
