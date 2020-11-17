@@ -36,7 +36,6 @@ def contact():
     return render_template('contact.html')
 
 def send_email(data):
-    print(data['name'])
     try:
         msg = Message(f'{data["subject"]}', sender = f'{data["email"]}', recipients = ['liam.breen25@gmail.com'])
         msg.body = f"name: {data['name']}, email: {data['email']}, sender: {data['email']}, message: {data['message']},"
